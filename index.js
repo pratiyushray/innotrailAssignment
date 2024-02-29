@@ -3,6 +3,7 @@ console.log("Drag and Drop Feature");
 
 // Array for Undo History
 let undoHistory = [];
+let redoHistory = [];
 
 //DIV DRAG FEATURE ___________________________________________________________
 
@@ -57,19 +58,56 @@ function undo() {
   if (undoHistory.length > 0) {
     // Get last data from history
     const lastState = undoHistory.pop();
+    if (lastState.length === 3) {
+      let element = document.getElementById(lastState[0]);
+      element.parentNode.removeChild(element);
+      element = document.getElementById(lastState[1]);
+      element.parentNode.removeChild(element);
+      element = document.getElementById(lastState[2]);
+      element.parentNode.removeChild(element);
+      redoHistory.push(lastState);
+    } else {
+      const sourceBox = document.getElementById(lastState.sourceBoxId);
+      const sourceCell = lastState.sourceBoxParent;
 
-    const sourceBox = document.getElementById(lastState.sourceBoxId);
-    const sourceCell = lastState.sourceBoxParent;
+      const targetBox = document.getElementById(lastState.targetBoxId);
+      const targetCell = lastState.targetBoxParent;
 
-    const targetBox = document.getElementById(lastState.targetBoxId);
-    const targetCell = lastState.targetBoxParent;
+      // Add current state to redo history
+      redoHistory.push(lastState);
 
-    // Swap boxes back to their previous positions
+      // Swap boxes back to their previous positions
 
-    targetCell.appendChild(targetBox);
-    sourceCell.appendChild(sourceBox);
+      targetCell.appendChild(targetBox);
+      sourceCell.appendChild(sourceBox);
+    }
   } else {
     alert("Nothing to Undo!!!");
+  }
+}
+
+function redo() {
+  if (redoHistory.length > 0) {
+    // Get last data from history
+    const lastState = redoHistory.pop();
+    if (lastState.length === 3) {
+      addRow();
+    } else {
+      const sourceBox = document.getElementById(lastState.sourceBoxId);
+      const sourceCell = lastState.sourceBoxParent;
+
+      const targetBox = document.getElementById(lastState.targetBoxId);
+      const targetCell = lastState.targetBoxParent;
+
+      // Swap boxes back to their previous positions (opposite of undo)
+      sourceCell.appendChild(targetBox);
+      targetCell.appendChild(sourceBox);
+
+      // Add current state to undo history
+      undoHistory.push(lastState);
+    }
+  } else {
+    alert("Nothing to Redo!!!");
   }
 }
 
@@ -127,11 +165,15 @@ function addRow() {
   const table = document.querySelector("table");
   const newRow = table.insertRow(-1);
 
+  let ls = [];
+
   // creating new cell and adding data to that div
 
   const newCell1 = newRow.insertCell();
   const newDiv1 = document.createElement("div");
-  newCell1.id = `RC${Math.floor(Math.random() * 100)}`;
+  let id1 = `RC${Math.floor(Math.random() * 100)}`;
+  newCell1.id = id1;
+  ls.push(id1);
   newDiv1.id = `RC${Math.floor(Math.random() * 100)}`;
   newDiv1.draggable = true;
   newDiv1.textContent = inp1Val;
@@ -141,9 +183,10 @@ function addRow() {
 
   const newCell2 = newRow.insertCell();
   const newDiv2 = document.createElement("div");
-  newCell2.id = `RC${Math.floor(Math.random() * 200)}`;
+  let id2 = `RC${Math.floor(Math.random() * 200)}`;
+  newCell2.id = id2;
+  ls.push(id2);
   newDiv2.id = `RC${Math.floor(Math.random() * 200)}`;
-
   newDiv2.draggable = true;
   newDiv2.textContent = inp2Val;
   newCell2.appendChild(newDiv2);
@@ -152,7 +195,9 @@ function addRow() {
 
   const newCell3 = newRow.insertCell();
   const newDiv3 = document.createElement("div");
-  newCell3.id = `RC${Math.floor(Math.random() * 300)}`;
+  let id3 = `RC${Math.floor(Math.random() * 300)}`;
+  newCell3.id = id3;
+  ls.push(id3);
   newDiv3.id = `RC${Math.floor(Math.random() * 300)}`;
   newDiv3.draggable = true;
   newDiv3.textContent = inp3Val;
@@ -167,4 +212,9 @@ function addRow() {
     box.addEventListener("dragover", dragOver);
     box.addEventListener("drop", drop);
   });
+  undoHistory.push(ls);
 }
+
+//Redo Feature
+
+// Undo Redo on rows

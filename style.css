@@ -120,3 +120,17 @@ th, td {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.newTsk{
+    color: red;
+}
+
+.redoBtn{
+    border: none;
+    background-color: rgb(190, 129, 7);
+    color: white;
+    width: 60px;
+    height: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
