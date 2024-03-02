@@ -120,9 +120,9 @@ function undo() {
       redoHistory.push(lastState);
     } else {
       const sourceBox = document.getElementById(lastState.sourceBoxId);
-      const sourceCell = lastState.sourceBoxParent;
+      const sourceCell = document.getElementById(lastState.sourceBoxParent.id);
       const targetBox = document.getElementById(lastState.targetBoxId);
-      const targetCell = lastState.targetBoxParent;
+      const targetCell = document.getElementById(lastState.targetBoxParent.id);
 
       // Add current state to redo history
 
