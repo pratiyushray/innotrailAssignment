@@ -140,49 +140,49 @@ function undo() {
 
 //ADD ROW FEATURE___________________________________________________________
 
-let inp1Val = "";
-let inp2Val = "";
-let inp3Val = "";
-let inp1Col = "";
-let inp2Col = "";
-let inp3Col = "";
+let inp1Val = 1100;
+let inp2Val = 1200;
+let inp3Val = 1300;
+let inp1Col = "red";
+let inp2Col = "blue";
+let inp3Col = "green";
 
-const inputField1 = document.getElementById("inp1Val");
-const inputField2 = document.getElementById("inp2Val");
-const inputField3 = document.getElementById("inp3Val");
-const inputField4 = document.getElementById("inp1Col");
-const inputField5 = document.getElementById("inp2Col");
-const inputField6 = document.getElementById("inp3Col");
+// const inputField1 = document.getElementById("inp1Val");
+// const inputField2 = document.getElementById("inp2Val");
+// const inputField3 = document.getElementById("inp3Val");
+// const inputField4 = document.getElementById("inp1Col");
+// const inputField5 = document.getElementById("inp2Col");
+// const inputField6 = document.getElementById("inp3Col");
 
-inputField1.addEventListener("input", (event) => {
-  const inputValue = event.target.value;
-  inp1Val = inputValue;
-});
+// inputField1.addEventListener("input", (event) => {
+//   const inputValue = event.target.value;
+//   inp1Val = inputValue;
+// });
 
-inputField2.addEventListener("input", (event) => {
-  const inputValue = event.target.value;
-  inp2Val = inputValue;
-});
+// inputField2.addEventListener("input", (event) => {
+//   const inputValue = event.target.value;
+//   inp2Val = inputValue;
+// });
 
-inputField3.addEventListener("input", (event) => {
-  const inputValue = event.target.value;
-  inp3Val = inputValue;
-});
+// inputField3.addEventListener("input", (event) => {
+//   const inputValue = event.target.value;
+//   inp3Val = inputValue;
+// });
 
-inputField4.addEventListener("input", (event) => {
-  const inputValue = event.target.value;
-  inp1Col = inputValue;
-});
+// inputField4.addEventListener("input", (event) => {
+//   const inputValue = event.target.value;
+//   inp1Col = inputValue;
+// });
 
-inputField5.addEventListener("input", (event) => {
-  const inputValue = event.target.value;
-  inp2Col = inputValue;
-});
+// inputField5.addEventListener("input", (event) => {
+//   const inputValue = event.target.value;
+//   inp2Col = inputValue;
+// });
 
-inputField6.addEventListener("input", (event) => {
-  const inputValue = event.target.value;
-  inp3Col = inputValue;
-});
+// inputField6.addEventListener("input", (event) => {
+//   const inputValue = event.target.value;
+//   inp3Col = inputValue;
+// });
 
 function addRow(
   id1 = null,
