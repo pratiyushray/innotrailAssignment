@@ -29,6 +29,7 @@ function drop(event) {
   event.preventDefault();
 
   const sourceId = event.dataTransfer.getData("text/plain");
+  console.log(sourceId);
   const sourceBox = document.getElementById(sourceId);
   const targetBox = event.target;
 
@@ -78,9 +79,9 @@ function redo() {
       );
     } else {
       const sourceBox = document.getElementById(lastState.sourceBoxId);
-      const sourceCell = lastState.sourceBoxParent;
+      const sourceCell = document.getElementById(lastState.sourceBoxParent.id);
       const targetBox = document.getElementById(lastState.targetBoxId);
-      const targetCell = lastState.targetBoxParent;
+      const targetCell = document.getElementById(lastState.targetBoxParent.id);
 
       // Swap boxes back to their previous positions (opposite of undo)
 
